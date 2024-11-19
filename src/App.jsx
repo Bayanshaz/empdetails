@@ -10,25 +10,23 @@ function App() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState("active");
 
-  const API_URL = "https://empserver-w58y.onrender.com"; // Use the deployed server URL
+  const API_URL = "https://empserver-w58y.onrender.com";  
 
-  // Fetch employees when the component mounts
+   
   useEffect(() => {
     fetchEmployees();
   }, []);
 
-  // Fetch employees from the API
-  const fetchEmployees = async () => {
+   const fetchEmployees = async () => {
     try {
       const response = await axios.get(`${API_URL}/employees`);
-      setEmployees(response.data); // Update the employees state with the fetched data
-    } catch (error) {
+      setEmployees(response.data); 
+     } catch (error) {
       console.error("Error fetching employees:", error);
     }
   };
 
-  // Add a new employee
-  const handleAddEmployee = async (e) => {
+   const handleAddEmployee = async (e) => {
     e.preventDefault();
     const newEmployee = { name, email, status };
     try {
@@ -36,17 +34,18 @@ function App() {
       setName("");
       setEmail("");
       setStatus("active");
-      fetchEmployees(); // Refresh the employee list after adding
-    } catch (error) {
+      fetchEmployees();
+     } catch (error) {
       console.error("Error adding employee:", error);
     }
   };
 
-  // Delete an employee
+   
   const handleDeleteEmployee = async (id) => {
     try {
       await axios.delete(`${API_URL}/employees/${id}`);
-      fetchEmployees(); // Refresh the employee list after deletion
+      fetchEmployees();
+       
     } catch (error) {
       console.error("Error deleting employee:", error);
     }
@@ -58,7 +57,7 @@ function App() {
         <div className="max-w-7xl mx-auto bg-black shadow-lg rounded-lg p-6">
           <h1 className="text-4xl font-extrabold text-center text-red-800 mb-8">Employee Details</h1>
 
-          {/* Add Employee Form */}
+          {/* Add Employee  */}
           <div className="mb-8  p-6 rounded-lg shadow-md">
             <form onSubmit={handleAddEmployee} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               <input

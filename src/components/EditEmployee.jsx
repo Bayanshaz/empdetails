@@ -3,18 +3,18 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function EditEmployee({ fetchEmployees }) {
-  const { id } = useParams(); // Get the employee ID from the URL
+  const { id } = useParams();  
   const navigate = useNavigate();
   const [employee, setEmployee] = useState({ name: "", email: "", status: "active" });
 
-  const API_URL = "https://empserver-w58y.onrender.com"; // Same base URL
+  const API_URL = "https://empserver-w58y.onrender.com";  
 
-  // Fetch employee data on component mount
+ 
   useEffect(() => {
     const fetchEmployee = async () => {
       try {
         const response = await axios.get(`${API_URL}/employees/${id}`);
-        setEmployee(response.data); // Populate the form with existing data
+        setEmployee(response.data);  
       } catch (error) {
         console.error("Error fetching employee:", error);
       }
@@ -23,13 +23,13 @@ function EditEmployee({ fetchEmployees }) {
     fetchEmployee();
   }, [id]);
 
-  // Handle form submission
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`${API_URL}/employees/${id}`, employee); // Update employee data
-      fetchEmployees(); // Refresh the employee list in the main app
-      navigate("/"); // Redirect back to the main page
+      await axios.put(`${API_URL}/employees/${id}`, employee);  
+      fetchEmployees(); 
+      navigate("/");  
     } catch (error) {
       console.error("Error updating employee:", error);
     }
